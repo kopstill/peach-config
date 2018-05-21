@@ -1,2 +1,2 @@
 # peach-config
-spring cloud config of peach
+Spring cloud config of peach

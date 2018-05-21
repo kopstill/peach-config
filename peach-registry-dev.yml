@@ -1,0 +1,27 @@
+server:
+  address: 127.0.0.1
+  port: 30003
+---
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    registerWithEureka: false
+    fetchRegistry: false
+    serviceUrl:
+      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
+---
+spring:
+  security:
+    user:
+      name: hello
+      password: world
+---
+management:
+  server:
+    servlet:
+      context-path: /management
+    port: 30004
+  endpoints:
+    web:
+      base-path: /actuator
