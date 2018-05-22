@@ -1,9 +1,28 @@
 server:
   address: 127.0.0.1
   port: 30005
+  servlet:
+    context-path: /peach/gateway
 ---
 spring:
   cloud:
     consul:
       host: localhost
       port: 8500
+      discovery:
+        health-check-path: ${server.servlet.context-path}/health
+        health-check-interval: 15s
+---
+spring:
+  cloud:
+    gateway:
+      locator:
+        enabled: true
+      default-filters:
+      - AddResponseHeader=X-Response-Default-Foo, Default-Bar
+      routes:
+      - id: default_path_to_http
+        uri: ikop.cc
+        order: 1000
+        predicates:
+        - Path=/**
