@@ -10,12 +10,16 @@ spring:
       discovery:
         hostname: ${server.address}
         port: ${server.port}
+        service-name: ${spring.application.name}
         health-check-path: /actuator/health
         health-check-interval: 15s
 ---
 spring:
   cloud:
     gateway:
+      discovery:
+        locator:
+          enabled: true
       locator:
         enabled: true
       routes:
@@ -25,7 +29,7 @@ spring:
         predicates:
         - Path=/**
       - id: peach-service-meituan
-        uri: http://${server.address}:${server.port}/404
+        uri: lb://peach-service-meituanx
         order: 9000
         predicates:
         - Path=/meituan/**
