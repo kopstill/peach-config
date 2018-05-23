@@ -1,8 +1,6 @@
 server:
   address: 127.0.0.1
   port: 30005
-  servlet:
-    context-path: /peach/gateway
 ---
 spring:
   cloud:
@@ -10,7 +8,9 @@ spring:
       host: localhost
       port: 8500
       discovery:
-        health-check-path: ${server.servlet.context-path}/health
+        hostname: ${server.address}
+        port: ${server.port}
+        health-check-path: /actuator/health
         health-check-interval: 15s
 ---
 spring:
@@ -18,11 +18,14 @@ spring:
     gateway:
       locator:
         enabled: true
-      default-filters:
-      - AddResponseHeader=X-Response-Default-Foo, Default-Bar
       routes:
-      - id: default_path_to_http
-        uri: ikop.cc
-        order: 1000
+      - id: default
+        uri: http://${server.address}:${server.port}/404
+        order: 10000
         predicates:
         - Path=/**
+      - id: peach-service-meituan
+        uri: http://${server.address}:${server.port}/404
+        order: 9000
+        predicates:
+        - Path=/meituan/**
