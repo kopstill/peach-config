@@ -20,8 +20,6 @@ spring:
       discovery:
         locator:
           enabled: true
-      locator:
-        enabled: true
       routes:
       - id: default
         uri: http://${server.address}:${server.port}/404
