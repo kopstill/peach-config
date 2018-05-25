@@ -31,3 +31,7 @@ spring:
         order: 9000
         predicates:
         - Path=/meituan/**
+---
+logging:
+  level:
+    root: DEBUG

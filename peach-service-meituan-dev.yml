@@ -15,3 +15,7 @@ spring:
         service-name: ${spring.application.name}
         health-check-path: ${server.servlet.context-path}/actuator/health
         health-check-interval: 15s
+---
+logging:
+  level:
+    root: DEBUG
