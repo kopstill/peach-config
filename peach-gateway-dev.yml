@@ -30,8 +30,6 @@ spring:
         uri: lb://peach-service-meituan
         order: 9000
         predicates:
-        - Path=/meituan/**
----
-logging:
-  level:
-    root: DEBUG
+        - Path=/meituan/{segment}
+        filters:
+        - SetPath=/peach-service-meituan/{segment}
