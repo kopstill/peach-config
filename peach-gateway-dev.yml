@@ -33,3 +33,10 @@ spring:
         - Path=/meituan/{segment}
         filters:
         - SetPath=/peach-service-meituan/{segment}
+      - id: peach-service-eleme
+        uri: lb://peach-service-eleme
+        order: 9000
+        predicates:
+        - Path=/eleme/{segment}
+        filters:
+        - SetPath=/peach-service-eleme/{segment}

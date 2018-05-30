@@ -1,0 +1,17 @@
+server:
+  address: 127.0.0.1
+  port: 30106
+  servlet:
+    context-path: /peach-service-eleme
+---
+spring:
+  cloud:
+    consul:
+      host: 127.0.0.1
+      port: 8500
+      discovery:
+        hostname: ${server.address}
+        port: ${server.port}
+        service-name: ${spring.application.name}
+        health-check-path: ${server.servlet.context-path}/actuator/health
+        health-check-interval: 15s
