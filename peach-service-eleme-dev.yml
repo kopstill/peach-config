@@ -15,3 +15,11 @@ spring:
         service-name: ${spring.application.name}
         health-check-path: ${server.servlet.context-path}/actuator/health
         health-check-interval: 15s
+---
+spring:
+  jackson:
+    default-property-inclusion: NON_NULL
+    property-naming-strategy: SNAKE_CASE
+    locale: SIMPLIFIED_CHINESE
+    time-zone: "Asia/Shanghai"
+    date-format: "yyyy-MM-dd HH:mm:ss"
