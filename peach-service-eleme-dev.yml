@@ -23,3 +23,27 @@ spring:
     locale: SIMPLIFIED_CHINESE
     time-zone: "Asia/Shanghai"
     date-format: "yyyy-MM-dd HH:mm:ss"
+---
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/peach?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&useSSL=false&zeroDateTimeBehavior=CONVERT_TO_NULL
+    username: peach
+    password: peach123
+    type: com.zaxxer.hikari.HikariDataSource
+    hikari:
+      minimum-idle: 5
+      maximum-pool-size: 30
+      auto-commit: true
+      idle-timeout: 30000
+      pool-name: PeachHikariCP
+      max-lifetime: 1800000
+      connection-timeout: 30000
+      connection-test-query: SELECT 1
+---
+mybatis:
+    type-aliases-package: com.kopever.peach.service.eleme.domain.data
+    configuration:
+        map-underscore-to-camel-case: true
+        default-fetch-size: 100
+        default-statement-timeout: 30

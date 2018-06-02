@@ -26,17 +26,17 @@ spring:
         order: 10000
         predicates:
         - Path=/**
-      - id: peach-service-meituan
-        uri: lb://peach-service-meituan
-        order: 9000
-        predicates:
-        - Path=/meituan/{segment}
-        filters:
-        - SetPath=/peach-service-meituan/{segment}
       - id: peach-service-eleme
         uri: lb://peach-service-eleme
         order: 9000
         predicates:
-        - Path=/eleme/{segment}
+        - Path=/eleme/**
         filters:
-        - SetPath=/peach-service-eleme/{segment}
+        - RewritePath=/eleme/(?<segment>.*), /peach-service-eleme/$\{segment}
+      - id: peach-service-meituan
+        uri: lb://peach-service-meituan
+        order: 8000
+        predicates:
+        - Path=/meituan/{segment}
+        filters:
+        - SetPath=/peach-service-meituan/{segment}
