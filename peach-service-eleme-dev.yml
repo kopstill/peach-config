@@ -2,7 +2,7 @@ server:
   address: 127.0.0.1
   port: 30106
   servlet:
-    context-path: /peach-service-eleme
+    context-path: /${spring.application.name}
 ---
 spring:
   cloud:
@@ -48,3 +48,11 @@ mybatis:
         map-underscore-to-camel-case: true
         default-fetch-size: 100
         default-statement-timeout: 30
+---
+feign:
+  hystrix:
+    enabled: true
+---
+logging:
+  level:
+    com.kopever.peach.service.eleme.client.UserClient: DEBUG
