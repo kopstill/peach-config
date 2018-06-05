@@ -29,7 +29,7 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3306/peach?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&useSSL=false&zeroDateTimeBehavior=CONVERT_TO_NULL
     username: peach
-    password: peach
+    password: Peach-_-616
     type: com.zaxxer.hikari.HikariDataSource
     hikari:
       pool-name: PeachHikariCP
@@ -52,6 +52,12 @@ mybatis:
 feign:
   hystrix:
     enabled: true
+---
+hystrix.command.default.execution.isolation.thread.timeoutInMilliseconds: 10000
+---
+ribbon:
+  ConnectTimeout: 3000
+  ReadTimeout: 10000
 ---
 logging:
   level:
